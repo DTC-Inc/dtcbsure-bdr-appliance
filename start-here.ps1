@@ -38,6 +38,9 @@ else
    exit
 
    }
+
+Set-ExecutionPolicy -executionPolicy unrestricted -force -scope process
+
 & "$psScriptRoot\s2d-deploy.ps1"
 & "$psScriptRoot\create-share.ps1"
 & "$psScriptRoot\deploy-networking.ps1"
