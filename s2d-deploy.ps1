@@ -1,19 +1,19 @@
-param([switch]$Elevated)
-Get-Disk | Where-Object IsOffline -Eq $True | Set-Disk -IsOffline $False
+param([switch]$elevated)
+Get-Disk | Where-Object isOffline -eq $true | Set-Disk -isOffline $false
 Update-StorageProviderCache
-Get-StoragePool | ? IsPrimordial -eq $false | Set-StoragePool -IsReadOnly:$false -ErrorAction SilentlyContinue
-Get-StoragePool | ? IsPrimordial -eq $false | Get-VirtualDisk | Remove-VirtualDisk -Confirm:$false -ErrorAction SilentlyContinue
-Get-StoragePool | ? IsPrimordial -eq $false | Remove-StoragePool -Confirm:$false -ErrorAction SilentlyContinue
-Get-PhysicalDisk | Reset-PhysicalDisk -ErrorAction SilentlyContinue
-Get-Disk | ? Number -ne $null | ? IsBoot -ne $true | ? IsSystem -ne $true | ? PartitionStyle -ne RAW | % {
-    $_ | Set-Disk -isoffline:$false
-    $_ | Set-Disk -isreadonly:$false
-    $_ | Clear-Disk -RemoveData -RemoveOEM -Confirm:$false
-    $_ | Set-Disk -isreadonly:$true
-    $_ | Set-Disk -isoffline:$true
+Get-StoragePool | ? isPrimordial -eq $false | Set-StoragePool -isReadyOnly:$false -errorAction silentlyContinue
+Get-StoragePool | ? isPrimorial -eq $false | Get-VirtualDisk | Remove-VirtualDisk -confirm:$false -errorAction silentlyContinue
+Get-StoragePool | ? isPrimordial -eq $false | Remove-StoragePool -confirm:$false -errorAction silentlyContinue
+Get-PhysicalDisk | Reset-PhysicalDisk -errorAction silentlyContinue
+Get-Disk | ? number -ne $null | ? isBoot -ne $true | ? isSystem -ne $true | ? partitionStyle -ne RAW | % {
+    $_ | Set-Disk -isOffline:$false
+    $_ | Set-Disk -isReadyOnly:$false
+    $_ | Clear-Disk -removeData -removeOEM -confirm:$false
+    $_ | Set-Disk -isReadyOnly:$true
+    $_ | Set-Disk -isOffline:$true
 }
-Get-Disk | Where Number -Ne $Null | Where IsBoot -Ne $True | Where IsSystem -Ne $True | Where PartitionStyle -Eq RAW | Group -NoElement -Property FriendlyName
-$physicaldisk = Get-PhysicalDisk -CanPool $true
-$storagesubsystem = Get-StorageSubsystem |Select-Object -ExpandProperty FriendlyName
-New-StoragePool -FriendlyName pool0 -StorageSubsystemFriendlyName $storagesubsystem -PhysicalDisks $physicalDisk
-New-Volume -FriendlyName "storage" -FileSystem NTFS -StoragePoolFriendlyName "pool0" -Size 7.27TB -ResiliencySettingName Mirror -AccessPath D:
+Get-Disk | Where number -Ne $Null | Where isBoot -Ne $true | Where isSystem -Ne $true | Where partitionStyle -eq RAW | Group -noElement -property friendlyName
+$physicalDisk = Get-PhysicalDisk -canPool $true
+$storagesubsystem = Get-StorageSubsystem |Select-Object -expandProperty friendlyName
+New-StoragePool -friendlyName pool0 -storageSubsystemFriendlyName $storageSubsystem -physicalDisks $physicalDisk
+New-Volume -friendlyName "storage" -fileSystem NTFS -storagePoolFriendlyName "pool0" -size 7.27TB -resiliencySettingName mirror -accessPath D:

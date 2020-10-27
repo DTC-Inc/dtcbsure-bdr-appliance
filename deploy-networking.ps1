@@ -1,8 +1,8 @@
-Get-VMNetworkadapter -ManagementOS  | Where-Object -Property "Name" -notlike "Container NIC*" | Remove-VMNetworkAdapter
-Get-VMSwitch | Where-Object -Property Name -notlike "Default Switch" | Remove-VMSwitch -Force
+Get-VMNetworkadapter -managementOS  | Where-Object -property "name" -notlike "Container NIC*" | Remove-VMNetworkAdapter
+Get-VMSwitch | Where-Object -property name -notlike "Default Switch" | Remove-VMSwitch -force
 Get-NetSwitchteam| Remove-NetSwitchTeam
-$toTeam = Get-NetAdapter | Where-Object -Property InterfaceDescription -like "Intel*" | Select-Object -ExpandProperty Name
-New-NetSwitchTeam -Name TEAM0 -TeamMembers $toTeam
-New-VMSwitch -Name TEAM0 -NetAdapterName TEAM0
-Rename-VMNetworkAdapter -Name TEAM0 -NewName SHARED-TEAM0 -ManagementOS
+$toTeam = Get-NetAdapter | Where-Object -property interfaceDescription -like "Intel*" | Select-Object -expandProperty name
+New-NetSwitchTeam -name TEAM0 -teamMembers $toTeam
+New-VMSwitch -name TEAM0 -netAdapterName TEAM0
+Rename-VMNetworkAdapter -name TEAM0 -newName SHARED-TEAM0 -managementOS
 ping 8.8.8.8 -n 30

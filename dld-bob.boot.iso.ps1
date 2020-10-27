@@ -1,1 +1,1 @@
-wget https://public-dtc.s3.us-west-002.backblazeb2.com/repo/isos/win10/bob.boot-current.ISO -Outfile d:\repo\bob.boot-current.iso
+wget https://public-dtc.s3.us-west-002.backblazeb2.com/repo/isos/win10/bob.boot-current.ISO -outFile d:\repo\bob.boot-current.iso
