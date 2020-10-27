@@ -8,6 +8,8 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 Set-ExecutionPolicy -executionPolicy unrestricted -force -scope localMachine
+wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
+Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:systemdrive\dtc"
 
 & "$psScriptRoot\s2d-deploy.ps1"
 & "$psScriptRoot\create-share.ps1"
