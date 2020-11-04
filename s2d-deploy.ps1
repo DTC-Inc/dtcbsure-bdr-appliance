@@ -16,4 +16,4 @@ Get-Disk | Where number -Ne $Null | Where isBoot -Ne $true | Where isSystem -Ne 
 $physicalDisk = Get-PhysicalDisk -canPool $true
 $storagesubsystem = Get-StorageSubsystem |Select-Object -expandProperty friendlyName
 New-StoragePool -friendlyName pool0 -storageSubsystemFriendlyName $storageSubsystem -physicalDisks $physicalDisk
-New-Volume -friendlyName "storage" -fileSystem NTFS -storagePoolFriendlyName "pool0" -size 7.27TB -resiliencySettingName mirror -accessPath D:
+New-Volume -friendlyName "storage" -fileSystem NTFS -storagePoolFriendlyName "pool0" -UseMaximumSize -resiliencySettingName mirror -accessPath D:
