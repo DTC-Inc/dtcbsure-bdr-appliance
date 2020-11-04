@@ -8,6 +8,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 Set-ExecutionPolicy -executionPolicy unrestricted -force -scope localMachine
+Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
 wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
 Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:systemdrive\dtc" -force
 
