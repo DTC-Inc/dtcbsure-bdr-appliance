@@ -1,0 +1,5 @@
+& "$psScriptRoot\s2d-deploy.ps1"
+& "$psScriptRoot\create-share.ps1"
+& "$psScriptRoot\deploy-networking.ps1"
+& "$psScriptRoot\dld-bob.boot.iso.ps1"
+& "$psScriptRoot\agent-install.ps1"
