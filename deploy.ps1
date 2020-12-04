@@ -6,6 +6,7 @@ if ($killScript -eq "y") {
     exit
 }
 
+Set-ExecutionPolicy remoteSigned -force
 
 & "$psScriptRoot\s2d-deploy.ps1"
 & "$psScriptRoot\create-share.ps1"
