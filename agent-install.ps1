@@ -1,3 +1,3 @@
-wget "https://automate.dtctoday.com/LabTech/Deployment.aspx?InstallerToken=803804a6951441c88b8ad92968a7f3c8" -outFile $env:windir\temp\agent_install.exe
+wget "https://s3.us-west-002.backblazeb2.com/public-dtc/repo/dtcbsure-bdr/agent_install.msi" -outFile $env:windir\temp\agent_install.exe
 $agentInstallPath = "$env:windir\temp\agent_install.exe"
 Start-Process -filePath $agentInstallPath -argumentList "/quiet /install"
