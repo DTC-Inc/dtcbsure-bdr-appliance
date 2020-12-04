@@ -1,3 +1,14 @@
+# Init errorCatch variable
+Write-Host "Warning!! This will cause data loss if this is run!"
+$killScript = Read-Host "Do you want to kill this script? (y or n)"
+
+
+
+if ($killScript -eq "y") {
+    exit
+}
+
+
 & "$psScriptRoot\s2d-deploy.ps1"
 & "$psScriptRoot\create-share.ps1"
 & "$psScriptRoot\deploy-networking.ps1"
