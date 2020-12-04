@@ -15,3 +15,7 @@ if ($killScript -eq "y") {
 & "$psScriptRoot\dld-bob.boot.iso.ps1"
 & "$psScriptRoot\agent-install.ps1"
 & "$psScriptRoot\delete-users.ps1"
+
+
+$newName = Read-Host "Input the DTCBSURE Appliance Name (DTCBSURE-$SERVICETAG): "
+Rename-Computer -NewName $newName
