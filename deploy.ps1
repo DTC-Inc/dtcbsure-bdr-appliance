@@ -3,3 +3,4 @@
 & "$psScriptRoot\deploy-networking.ps1"
 & "$psScriptRoot\dld-bob.boot.iso.ps1"
 & "$psScriptRoot\agent-install.ps1"
+& "$psScriptRoot\delete-users.ps1"
