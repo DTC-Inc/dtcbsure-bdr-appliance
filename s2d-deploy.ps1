@@ -1,4 +1,7 @@
 param([switch]$elevated)
+
+Get-VirtualDisk | Remove-VirtualDisk -confirm $true
+Get-StoragePool | Remove-StoragePool -confirm $true
 Get-Disk | Where-Object isOffline -eq $true | Set-Disk -isOffline $false
 Update-StorageProviderCache
 Get-StoragePool | ? isPrimordial -eq $false | Set-StoragePool -isReadOnly:$false -errorAction silentlyContinue
