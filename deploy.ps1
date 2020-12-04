@@ -15,6 +15,29 @@ Set-ExecutionPolicy remoteSigned -force
 & "$psScriptRoot\dld-bob.boot.iso.ps1"
 & "$psScriptRoot\delete-users.ps1"
 
-
+# Rename Computer
 $newName = Read-Host "Input the DTCBSURE Appliance Name (DTCBSURE-$SERVICETAG): "
 Rename-Computer -NewName $newName
+
+# Insert Product Key
+$productKey = Read-Host "What is the product key? (with dashes)"
+slmgr /ipk $productKey
+
+# Success check
+$successful = Read-Host "Did everything complete successfully? (y or n)"
+
+if ( $successful -ne "y" ){
+    Write-Host "Please run this script until all issues are resolved."
+}
+
+if ( $successful -eq "y" ){
+    Read-Host "Please remember to configure the UEFI and IPMI."
+}
+
+# Reboot
+$reboot = Read-Host "Do you want to reboot? (y or n)"
+
+if ($reboot -eq "y"){
+    shutdown -r -t 00 -f
+}
+
