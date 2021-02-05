@@ -17,7 +17,7 @@ Set-ExecutionPolicy remoteSigned -force
 & "$psScriptRoot\provision-users.ps1"
 
 # Rename Computer
-$newName = Read-Host "Input the DTCBSURE Appliance Name (DTCBSURE-$SERVICETAG): "
+$newName = Read-Host "Input the DTCBSURE Appliance Name (DTCBSURE-$ASSETTAG): "
 
 if ($newName) {
     Rename-Computer -NewName $
