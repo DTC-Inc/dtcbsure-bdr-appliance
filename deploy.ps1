@@ -15,6 +15,8 @@ Set-ExecutionPolicy remoteSigned -force
 & "$psScriptRoot\agent-install.ps1"
 & "$psScriptRoot\dld-bob.boot.iso.ps1"
 & "$psScriptRoot\provision-users.ps1"
+& "$psScriptRoot\enableSystemRestore.ps1"
+
 
 # Rename Computer
 $newName = Read-Host "Input the DTCBSURE Appliance Name (DTCBSURE-$ASSETTAG): "
