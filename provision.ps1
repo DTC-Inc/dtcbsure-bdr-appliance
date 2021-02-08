@@ -10,6 +10,6 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 # Update from master
 Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
 wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
-Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:systemdrive\dtc" -force
+Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:programdata\dtc" -force
 
 & "$psScriptRoot\deploy.ps1"
