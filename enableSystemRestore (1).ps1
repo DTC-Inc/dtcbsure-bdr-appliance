@@ -1,1 +1,0 @@
-Enable-ComputerRestore -drive "C:\"
