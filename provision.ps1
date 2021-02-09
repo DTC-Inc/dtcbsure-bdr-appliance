@@ -11,7 +11,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 # ProgramData path update. 
 if ( $oldPath ) {   
     robocopy $env:systemdrive\dtc $env:programdata\DTC /mir
-    $psScriptRoot = $env:programdata\dtc\dtcbsure-bdr-appliance-main
+    $psScriptRoot = "$env:programdata\dtc\dtcbsure-bdr-appliance-main"
     Remove-Item -path $env:public\Desktop\Provision.lnk -force
     Remove-Item -literalPath $env:systemdrive\dtc -force -recurse
     
