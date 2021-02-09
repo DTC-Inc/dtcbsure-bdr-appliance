@@ -13,7 +13,7 @@ if ( $oldPath ) {
     New-Item -path $env:programdata -name "DTC" -itemType "directory"
     $psScriptRoot = $env:programdata\dtc\dtcbsure-bdr-appliance-main
     Remove-Item -path $env:public\Desktop\Provision.lnk -force
-    Remove-Item --literalPath $env:systemdrive\dtc -force -recurse
+    Remove-Item -literalPath $env:systemdrive\dtc -force -recurse
     
     # Create new shortcut
     $wshShell = New-Object -comObject WScript.Shell
