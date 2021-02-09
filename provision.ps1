@@ -12,4 +12,21 @@ Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
 wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
 Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:programdata\dtc" -force
 
+
+# ProgramData path update. 
+$oldPath = Test-Path -path $env:systemdrive\dtc
+
+if ( $oldPath ) {
+    $psScriptRoot = $env:programdata\dtc\dtcbsure-bdr-appliance-main
+    Remove-Item -path $env:public\Desktop\Provision.lnk -force
+    Remove-Item --literalPath $env:systemdrive\dtc -force -recurse
+    
+    # Create new shortcut
+    $wshShell = New-Object -comObject WScript.Shell
+    $shortcut = $wshShell.CreateShortcut("$env:public\Desktop\Provision.lnk")
+    $shortcut.TargetPath = "powershell.exe -policy byppass -file $env:programdata\dtc\dtcbsure-bdr-appliance-main\provision.ps1"
+    $shortcut.Save()
+    
+}
+
 & "$psScriptRoot\deploy.ps1"
