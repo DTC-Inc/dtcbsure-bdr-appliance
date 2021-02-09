@@ -18,7 +18,7 @@ if ( $oldPath ) {
     # Create new shortcut
     $wshShell = New-Object -comObject WScript.Shell
     $shortcut = $wshShell.CreateShortcut("$env:public\Desktop\Provision.lnk")
-    $shortcut.TargetPath = "powershell.exe -policy byppass -file $env:programdata\dtc\dtcbsure-bdr-appliance-main\provision.ps1"
+    $shortcut.TargetPath = "powershell.exe -executionPolicy bypass -file $env:programdata\dtc\dtcbsure-bdr-appliance-main\provision.ps1"
     $shortcut.Save()
     
 }
