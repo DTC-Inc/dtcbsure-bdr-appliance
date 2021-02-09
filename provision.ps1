@@ -7,16 +7,10 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     }
 }
 
-# Update from master
-Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
-wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
-Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:programdata\dtc" -force
-
 
 # ProgramData path update. 
-$oldPath = Test-Path -path $env:systemdrive\dtc
-
-if ( $oldPath ) {
+if ( $oldPath ) {   
+    New-Item -path $env:programdata -name "DTC" -itemType "directory"
     $psScriptRoot = $env:programdata\dtc\dtcbsure-bdr-appliance-main
     Remove-Item -path $env:public\Desktop\Provision.lnk -force
     Remove-Item --literalPath $env:systemdrive\dtc -force -recurse
@@ -30,3 +24,12 @@ if ( $oldPath ) {
 }
 
 & "$psScriptRoot\deploy.ps1"
+
+
+
+# Update from master
+Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
+wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
+Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:programdata\dtc" -force
+
+
