@@ -7,9 +7,10 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     }
 }
 
-
 # ProgramData path update. 
-if ( $oldPath ) {   
+$oldPath = Test-Path -path $env:systemdrive\dtc
+
+if ( $oldPath -eq $true ) {   
     robocopy $env:systemdrive\dtc $env:programdata\DTC /mir
     $psScriptRoot = "$env:programdata\dtc\dtcbsure-bdr-appliance-main"
     Remove-Item -path $env:public\Desktop\Provision.lnk -force
@@ -23,13 +24,16 @@ if ( $oldPath ) {
     
 }
 
-& "$psScriptRoot\deploy.ps1"
-
-
 
 # Update from master
 Remove-Item -path $env:windir\temp\dtcbsure-bdr.zip -force -confirm:$false
 wget "https://codeload.github.com/DTC-Inc/dtcbsure-bdr-appliance/zip/main" -outFile $env:windir\temp\dtcbsure-bdr.zip
 Expand-Archive -path "$env:windir\temp\dtcbsure-bdr.zip" -destinationPath "$env:programdata\dtc" -force
+
+& "$psScriptRoot\deploy.ps1"
+
+
+
+
 
 
