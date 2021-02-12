@@ -39,6 +39,8 @@ if ( $successful -eq "y" ){
     Read-Host "Please remember to configure the UEFI and IPMI."
 }
 
+Set-ExecutionPolicy RemoteSigned -Force
+
 # Reboot
 $reboot = Read-Host "Do you want to reboot? (y or n)"
 
