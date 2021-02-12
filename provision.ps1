@@ -7,7 +7,7 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     }
 }
 
-Set-ExecutionPolicy Bypass
+Set-ExecutionPolicy Bypass -Force
 
 # ProgramData path update. 
 $oldPath = Test-Path -path $env:systemdrive\dtc
