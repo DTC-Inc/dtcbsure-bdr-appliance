@@ -1,3 +1,3 @@
 # dtcbsure-bdr-appliance
 
-In production repo should be stored in C:\dtc\dtcbsure-bdr for best practices.
+In production repo should be stored in C:\ProgramData\dtc\dtcbsure-bdr for best practices.
